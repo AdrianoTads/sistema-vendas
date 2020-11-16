@@ -62,6 +62,36 @@ app.post('/cliente/salvar',(req,res)=>{
   res.redirect('/cliente/listar')
 })
 
+// ROTAS PARA CADASTRO DE FORMAS DE PAGAMENTO
+
+app.get('/forma-pagamento/listar',(req,res)=>{
+  db.query('SELECT * FROM forma_pagamento',(err,result)=>{
+    if(err){
+      console.log(`Houve um erro ao listar as formas de pagamento: ${err}`)
+    }
+    res.render('forma-pagamento/listar',{forma_pagamento:result.rows})
+  })
+
+  
+})
+app.get('/forma-pagamento/adicionar',(req,res)=>{
+  res.render('forma-pagamento/adicionar')
+})
+app.post('/forma-pagamento/salvar',(req,res)=>{
+  const query = {
+    text:'INSERT INTO forma_pagamento(descricao) VALUES ($1)',
+    values:[req.body.descricao]
+  }
+  db.query(query,(err,result)=>{
+    if(err){
+      console.log(`Houve um erro ao inserir a forma de pagamento: ${err}`)
+    }
+    console.log(result)
+  })
+
+  res.redirect('/forma-pagamento/listar')
+})
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
