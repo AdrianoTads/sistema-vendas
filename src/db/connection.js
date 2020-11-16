@@ -4,8 +4,7 @@ const db = new Pool({
     user:'postgres',
     host:'localhost',
     database:'sistema_vendas',
-    //mudar
-    password:'toormundial',
+    password:'root',
     port:5432
 })
 db.connect()
