@@ -19,12 +19,12 @@ let clientes = [
         cpf:"06122542555"
     },
     {
-        id:1,
+        id:2,
         nome:"Maria",
         cpf:"06122542522"
     },
     {
-        id:1,
+        id:3,
         nome:"Caio",
         cpf:"06122542525"
     }

@@ -58,4 +58,5 @@ CREATE TABLE itens_venda(
 	produto_id integer not null,
 	foreign key(produto_id) REFERENCES produto (id),
 	venda_id integer not null,
-	foreign key(venda_id) REFERENCES venda (id))
+	foreign key(venda_id) REFERENCES venda (id)
+	
