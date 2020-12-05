@@ -4,24 +4,26 @@
 
     <section class="card m-5">
         <header class="card-header">
-            <h3>Forma de Pagamento</h3>
+            <h3>Usuários</h3>
         </header>
         <div class="card-body">
-            <a href="/forma-pagamento/adicionar" class="btn btn-primary m-2">Adicionar</a>
+            <a href="/usuario/adicionar" class="btn btn-primary m-2">Adicionar</a>
             <table class="table">
                 <thead>
                     <th>ID</th>
-                    <th>Descrição</th>
+                    <th>Nome</th>
+                    <th>Email</th>
                     <th>Ações</th>
                 </thead>
                 <tbody>
-                    {% for forma in formas %} 
+                    {% for usuario in usuarios %} 
                         <tr>
-                            <td>{{ forma.id }}</td>
-                            <td>{{ forma.descricao }}</td>
+                            <td>{{ usuario.id }}</td>
+                            <td>{{ usuario.nome }}</td>
+                            <td>{{ usuario.email }}</td>
                             <td>
-                                <a href="/forma-pagamento/editar/{{forma.id}}">Editar</a>
-                                <a href="/forma-pagamento/excluir/{{forma.id}}">Excluir</a>
+                                <a href="/usuario/editar/{{usuario.id}}">Editar</a>
+                                <a href="/usuario/excluir/{{usuario.id}}">Excluir</a>
                             </td>
                         </tr>
                     {% endfor %}

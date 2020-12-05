@@ -4,18 +4,21 @@
 
     <section class="card m-5">
         <header class="card-header">
-            <h3>Editar Cliente</h3>
+            <h3>Adicionar Usuário</h3>
         </header>
         <div class="card-body">
-            <form action="/cliente/atualizar" method="post">
-                <input type="hidden" name="id" value={{cliente.id}}> 
+            <form action="/usuario/salvar" method="post"> 
                 <div class="form-group">
                     <label>Nome</label>
-                    <input type="text" name="nome" value="{{cliente.nome}}" class="form-control">
+                    <input type="text" name="nome" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label>CPF</label>
-                    <input type="number" name="cpf" value="{{cliente.cpf}}" class="form-control">
+                    <label>Email</label>
+                    <input type="text" name="email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="text" name="senha" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary">Salvar</button>
             </form>

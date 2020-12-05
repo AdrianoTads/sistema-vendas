@@ -1,68 +1,68 @@
 const db = require('../db/connection')
-class ClienteController{
+class UsuarioController{
     
     // LISTAR TODOS OS REGISTROS
     index(req,res){
-        db.query('SELECT * FROM cliente',(err,result)=>{
+        db.query('SELECT * FROM usuario',(err,result)=>{
             if(err){
-              console.log(`Houve um erro ao listar os clientes: ${err}`)
+              console.log(`Houve um erro ao listar os usuarios: ${err}`)
             }
-            res.render('cliente/listar',{clientes:result.rows})
+            res.render('usuario/listar',{usuarios:result.rows})
           })
     }
     create(req,res){
-        res.render('cliente/adicionar')
+        res.render('usuario/adicionar')
     }
     store(req,res){
         const query = {
-            text:'INSERT INTO cliente(nome,cpf) VALUES ($1,$2)',
-            values:[req.body.nome,req.body.cpf]
+            text:'INSERT INTO usuario(nome,email,senha) VALUES ($1,$2,$3)',
+            values:[req.body.nome,req.body.email,req.body.senha]
           }
           db.query(query,(err,result)=>{
             if(err){
-              console.log(`Houve um erro ao inserir o cliente: ${err}`)
+              console.log(`Houve um erro ao inserir o usuario: ${err}`)
             }
-            res.redirect('/cliente/listar') 
+            res.redirect('/usuario/listar') 
           })    
     }
     edit(req,res){
         
         const query = {
-           text:'SELECT * FROM cliente WHERE id=$1',
+           text:'SELECT * FROM usuario WHERE id=$1',
            values:[req.params.id] 
         }
         db.query(query,(err,result)=>{
             if(err){
                 console.log(`houve um erro ao editar: ${err}`)
             }
-            res.render('cliente/editar',{cliente:result.rows[0]})
+            res.render('usuario/editar',{usuario:result.rows[0]})
         })
     }
     update(req,res){
         const dados = req.body
         const query = {
-            text:'UPDATE cliente SET nome=$1,cpf=$2  WHERE id=$3',
-            values:[dados.nome,dados.cpf,dados.id]
+            text:'UPDATE usuario SET nome=$1,email=$2,senha=$3  WHERE id=$4',
+            values:[dados.nome,dados.email,dados.senha,dados.id]
         }
         db.query(query,(err,result)=>{
             if(err){
                 console.log(`Houve um erro ao atualizar o registro: ${err}`)
             }
-                res.redirect('/cliente/listar')
+                res.redirect('/usuario/listar')
         })
     }
     delete(req,res){
         const id = req.params.id
         const query = {
-            text:'DELETE FROM cliente WHERE id=$1',
+            text:'DELETE FROM usuario WHERE id=$1',
             values:[id]
         }
         db.query(query,(err,result)=>{
             if(err){
                 console.log(`Houve um erro ao excluir: ${err}`)
             }
-            res.redirect('/cliente/listar')
+            res.redirect('/usuario/listar')
         })
     }
 }
-module.exports = new ClienteController()
+module.exports = new UsuarioController()

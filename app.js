@@ -1,9 +1,10 @@
-const { response } = require('express')
+
 const express = require('express')
 const nunjucks = require('nunjucks')
 const clienteController = require('./src/controllers/ClienteController')
-
-
+const usuarioController = require('./src/controllers/UsuarioController')
+const categoriaController = require('./src/controllers/CategoriaController')
+const formaPagamentoController = require('./src/controllers/FormaPagamentoController')
 
 const app = express()
 const port = 3000
@@ -19,52 +20,43 @@ nunjucks.configure('./src/views', {
 app.get('/',(req,res)=>{
   res.render('index')
 })
-app.get('/categoria-produto/listar',(req,res)=>{
-  let {categoriasDeProduto} = require('./src/db/fakeData')
-  res.render('categoria-produto/listar',{categorias:categoriasDeProduto})
-})
-app.get('/categoria-produto/adicionar',(req,res)=>{
-  res.render('categoria-produto/adicionar')
-})
+
+// ROTAS PARA CADASTRO DE CATEGORIAS DE PRODUTO
+
+app.get('/categoria-produto/listar',categoriaController.index)
+app.get('/categoria-produto/adicionar',categoriaController.create)
+app.post('/categoria-produto/salvar',categoriaController.store)
+app.get('/categoria-produto/editar/:id',categoriaController.edit)
+app.post('/categoria-produto/atualizar',categoriaController.update)
+app.get('/categoria-produto/excluir/:id',categoriaController.delete)
+
 // ROTAS PARA CADASTRO DE CLIENTES
 
 app.get('/cliente/listar',clienteController.index)
-
 app.get('/cliente/adicionar',clienteController.create)
-
 app.post('/cliente/salvar',clienteController.store)
 app.get('/cliente/editar/:id',clienteController.edit)
 app.post('/cliente/atualizar',clienteController.update)
 app.get('/cliente/excluir/:id',clienteController.delete)
+
+
+// ROTAS PARA CADASTRO DE USUÁRIOS
+
+app.get('/usuario/listar',usuarioController.index)
+app.get('/usuario/adicionar',usuarioController.create)
+app.post('/usuario/salvar',usuarioController.store)
+app.get('/usuario/editar/:id',usuarioController.edit)
+app.post('/usuario/atualizar',usuarioController.update)
+app.get('/usuario/excluir/:id',usuarioController.delete)
+
 // ROTAS PARA CADASTRO DE FORMAS DE PAGAMENTO
 
-app.get('/forma-pagamento/listar',(req,res)=>{
-  db.query('SELECT * FROM forma_pagamento',(err,result)=>{
-    if(err){
-      console.log(`Houve um erro ao listar as formas de pagamento: ${err}`)
-    }
-    res.render('forma-pagamento/listar',{forma_pagamento:result.rows})
-  })
-
-  
-})
-app.get('/forma-pagamento/adicionar',(req,res)=>{
-  res.render('forma-pagamento/adicionar')
-})
-app.post('/forma-pagamento/salvar',(req,res)=>{
-  const query = {
-    text:'INSERT INTO forma_pagamento(descricao) VALUES ($1)',
-    values:[req.body.descricao]
-  }
-  db.query(query,(err,result)=>{
-    if(err){
-      console.log(`Houve um erro ao inserir a forma de pagamento: ${err}`)
-    }
-    console.log(result)
-  })
-
-  res.redirect('/forma-pagamento/listar')
-})
+app.get('/forma-pagamento/listar',formaPagamentoController.index)
+app.get('/forma-pagamento/adicionar',formaPagamentoController.create)
+app.post('/forma-pagamento/salvar',formaPagamentoController.store)
+app.get('/forma-pagamento/editar/:id',formaPagamentoController.edit)
+app.post('/forma-pagamento/atualizar',formaPagamentoController.update)
+app.get('/forma-pagamento/excluir/:id',formaPagamentoController.delete)
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
