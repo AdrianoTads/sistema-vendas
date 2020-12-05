@@ -15,13 +15,13 @@
                     <th>Ações</th>
                 </thead>
                 <tbody>
-                    {% for forma in formas %} 
+                    {% for formapagamento in formasdpagamento %} 
                         <tr>
-                            <td>{{ forma.id }}</td>
-                            <td>{{ forma.descricao }}</td>
+                            <td>{{ formapagamento.id }}</td>
+                            <td>{{ formapagamento.descricao }}</td>
                             <td>
-                                <a href="/forma-pagamento/editar/{{forma.id}}">Editar</a>
-                                <a href="/forma-pagamento/excluir/{{forma.id}}">Excluir</a>
+                                <a href="/forma-pagamento/editar/{{formapagamento.id}}">Editar</a>
+                                <a href="/forma-pagamento/excluir/{{formapagamento.id}}">Excluir</a>
                             </td>
                         </tr>
                     {% endfor %}

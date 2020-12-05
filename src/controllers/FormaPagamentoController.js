@@ -7,7 +7,7 @@ class FormaPagamentoController{
             if(err){
               console.log(`Houve um erro ao listar as formas de pagamento: ${err}`)
             }
-            res.render('forma-pagamento/listar',{formas:result.rows})
+            res.render('forma-pagamento/listar',{formasdpagamento:result.rows})
           })
     }
     create(req,res){
@@ -35,7 +35,7 @@ class FormaPagamentoController{
             if(err){
                 console.log(`houve um erro ao editar: ${err}`)
             }
-            res.render('forma-pagamento/editar',{forma:result.rows[0]})
+            res.render('forma-pagamento/editar',{formapagamento:result.rows[0]})
         })
     }
     update(req,res){

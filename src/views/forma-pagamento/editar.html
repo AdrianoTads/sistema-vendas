@@ -8,10 +8,10 @@
         </header>
         <div class="card-body">
             <form action="/forma-pagamento/atualizar" method="post">
-                <input type="hidden" name="id" value={{forma.id}}> 
+                <input type="hidden" name="id" value={{formapagamento.id}}> 
                 <div class="form-group">
                     <label>Descricao</label>
-                    <input type="text" name="descricao" value="{{forma.descricao}}" class="form-control">
+                    <input type="text" name="descricao" value="{{formapagamento.descricao}}" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary">Salvar</button>
             </form>
