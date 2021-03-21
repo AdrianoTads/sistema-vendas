@@ -8,7 +8,7 @@
     "dev": "nodemon -e js,html --ignore node_modules --ignore public/libs"
   },
   "keywords": [],
-  "author": "Caio Maqueise Alécio Pinheiro",
+  "author": "Adriano",
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
